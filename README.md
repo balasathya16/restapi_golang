@@ -1,12 +1,16 @@
-# Cricket teams implementation using Go. 
+# Food api implementation using Go. 
 
 Endpoints:
 
-Get All Teams
-GET api/teams
+Get All Food
+GET api/food
 
-Get a single Team
-GET api/teams/{id}
+Get a single Food item
+GET api/food/{id}
 
-Delete Team
-DELETE api/teams/{id}
+
+Delete Food
+DELETE api/food/{id}
+
+Update Food
+PUT api/food/{id}
