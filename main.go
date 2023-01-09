@@ -23,29 +23,21 @@ type Food struct {
 // 	json.NewEncoder(w).Encode(teams)
 // }
 
-// // Get single team
-// func getTeam(w http.ResponseWriter, r *http.Request) {
-// 	w.Header().Set("Content-Type", "application/json")
-// 	params := mux.Vars(r) // Gets params
-// 	// Loop through teams and find one team with the id from the params
-// 	for _, item := range teams {
-// 		if item.ID == params["id"] {
-// 			json.NewEncoder(w).Encode(item)
-// 			return
-// 		}
-// 	}
-// 	json.NewEncoder(w).Encode(&Team{})
-// }
+// Get single team
+func getFoods(w http.ResponseWriter, r *http.Request) {
+}
 
-// // Add new team
-// func createTeam(w http.ResponseWriter, r *http.Request) {
-// 	w.Header().Set("Content-Type", "application/json")
-// 	var team Team
-// 	_ = json.NewDecoder(r.Body).Decode(&team)
-// 	team.ID = strconv.Itoa(rand.Intn(100000000)) // sample ID
-// 	teams = append(teams, team)
-// 	json.NewEncoder(w).Encode(team)
-// }
+func getFood(w http.ResponseWriter, r *http.Request) {
+}
+
+func createFood(w http.ResponseWriter, r *http.Request) {
+}
+
+func updateFood(w http.ResponseWriter, r *http.Request) {
+}
+
+func deleteFood(w http.ResponseWriter, r *http.Request) {
+}
 
 // Main function
 func main() {
