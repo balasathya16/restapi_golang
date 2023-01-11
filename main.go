@@ -27,6 +27,16 @@ func getFoods(w http.ResponseWriter, r *http.Request) {
 // Get single food
 
 func getFood(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r) // get parameters
+	// loop through the foods and find using ID
+	for _, item := range foods {
+		if item.ID == params["id"] {
+			json.NewEncoder(w).Encode(item)
+			return
+		}
+	}
+	json.NewEncoder(w).Encode(&Food{})
 }
 
 // Create food
