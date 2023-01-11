@@ -5,6 +5,8 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/google/uuid"
+
 	"github.com/gorilla/mux"
 )
 
@@ -42,6 +44,13 @@ func getFood(w http.ResponseWriter, r *http.Request) {
 // Create food
 
 func createFood(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	var food Food
+	_ = json.NewDecoder(r.Body).Decode(&food)
+	food.ID = (uuid.New().String())
+	foods = append(foods, food)
+	json.NewEncoder(w).Encode(food)
+
 }
 
 // Update food
@@ -60,8 +69,8 @@ func main() {
 	router := mux.NewRouter()
 
 	// Hardcoded data - @todo: add database
-	foods = append(foods, Food{ID: "1", Name: "Pasta", Cuisine: "Italian"})
-	foods = append(foods, Food{ID: "2", Name: "Idly", Cuisine: "Indian"})
+	foods = append(foods, Food{ID: "5dc0d8b9-3f1c-4cda-883d-e695414c4330", Name: "Pasta", Cuisine: "Italian"})
+	foods = append(foods, Food{ID: "23557530-9793-456a-9d99-a39cc90b5207", Name: "Idly", Cuisine: "Indian"})
 
 	router.HandleFunc("/api/food", getFoods).Methods("GET")
 	router.HandleFunc("/api/food/{id}", getFood).Methods("GET")
