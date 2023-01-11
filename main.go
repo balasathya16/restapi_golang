@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"log"
 	"net/http"
 
@@ -15,26 +16,30 @@ type Food struct {
 	Cuisine string `json:"cuisine"`
 }
 
-// var teams []Team
+var foods []Food
 
-// // Get all teams
-// func getTeams(w http.ResponseWriter, r *http.Request) {
-// 	w.Header().Set("Content-Type", "application/json")
-// 	json.NewEncoder(w).Encode(teams)
-// }
-
-// Get single team
+// Get all food
 func getFoods(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(foods)
 }
+
+// Get single food
 
 func getFood(w http.ResponseWriter, r *http.Request) {
 }
 
+// Create food
+
 func createFood(w http.ResponseWriter, r *http.Request) {
 }
 
+// Update food
+
 func updateFood(w http.ResponseWriter, r *http.Request) {
 }
+
+// Delete food
 
 func deleteFood(w http.ResponseWriter, r *http.Request) {
 }
@@ -44,11 +49,10 @@ func main() {
 	// Init router
 	router := mux.NewRouter()
 
-	// // Hardcoded data - @todo: add database
-	// teams = append(teams, team{ID: "1", Country: "India", League: "IPL"})
-	// teams = append(teams, team{ID: "2", Country: "Canada", League: "GT20"})
+	// Hardcoded data - @todo: add database
+	foods = append(foods, Food{ID: "1", Name: "Pasta", Cuisine: "Italian"})
+	foods = append(foods, Food{ID: "2", Name: "Idly", Cuisine: "Indian"})
 
-	// Route handles & endpoints
 	router.HandleFunc("/api/food", getFoods).Methods("GET")
 	router.HandleFunc("/api/food/{id}", getFood).Methods("GET")
 	router.HandleFunc("/api/food", createFood).Methods("POST")
