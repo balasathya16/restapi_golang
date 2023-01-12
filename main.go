@@ -56,6 +56,22 @@ func createFood(w http.ResponseWriter, r *http.Request) {
 // Update food
 
 func updateFood(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	params := mux.Vars(r)
+	for index, item := range foods {
+		if item.ID == params["id"] {
+			foods = append(foods[:index], foods[index+1:]...)
+			w.Header().Set("Content-Type", "application/json")
+			var food Food
+			_ = json.NewDecoder(r.Body).Decode(&food)
+			food.ID = params["id"]
+			foods = append(foods, food)
+			json.NewEncoder(w).Encode(food)
+			return
+		}
+
+	}
+	json.NewEncoder(w).Encode(foods)
 
 }
 
